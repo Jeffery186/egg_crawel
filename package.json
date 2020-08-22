@@ -1,0 +1,58 @@
+{
+    "name": "egg_crawel",
+    "version": "1.0.0",
+    "description": "crawel",
+    "private": true,
+    "egg": {
+        "declarations": true
+    },
+    "dependencies": {
+        "@elastic/elasticsearch": "^7.6.1",
+        "axios": "^0.19.2",
+        "cheerio": "^1.0.0-rc.3",
+        "egg": "^2.26.0",
+        "egg-alinode": "^2.0.1",
+        "egg-cache": "0.0.6",
+        "egg-mongoose": "^3.2.0",
+        "egg-mysql": "^3.0.0",
+        "egg-scripts": "^2.13.0",
+        "feed": "^4.2.1",
+        "generic-pool": "^3.7.1",
+        "lodash": "^4.17.15",
+        "p-all": "^2.1.0",
+        "puppeteer": "^3.0.3",
+        "require-context-async": "^1.2.0"
+    },
+    "devDependencies": {
+        "autod": "^3.0.1",
+        "autod-egg": "^1.1.0",
+        "egg-bin": "^4.14.1",
+        "egg-ci": "^1.15.0",
+        "egg-mock": "^3.25.1",
+        "eslint": "^5.13.0",
+        "eslint-config-egg": "^7.1.0"
+    },
+    "engines": {
+        "node": ">=10.0.0"
+    },
+    "scripts": {
+        "start": "egg-scripts start --daemon --title=egg-server-egg_crawel",
+        "stop": "egg-scripts stop --title=egg-server-egg_crawel",
+        "dev": "egg-bin dev",
+        "debug": "egg-bin debug",
+        "test": "npm run test-local",
+        "test-local": "egg-bin test",
+        "cov": "egg-bin cov",
+        "ci": "npm run lint && npm run cov",
+        "autod": "autod"
+    },
+    "ci": {
+        "version": "10"
+    },
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "author": "jiaws",
+    "license": "MIT"
+}

@@ -1,0 +1,18 @@
+GET http://127.0.0.1:7001/getAllZiyuan HTTP/1.1
+
+###
+GET http://127.0.0.1:7001/getSearchXiaishuo?keywords=万古神帝
+
+###
+POST https://api.jikipedia.com/go/get_hot_search
+Content-Type: application/json
+
+{}
+
+###
+GET http://127.0.0.1:7001/getSearchZiyuan?keywords=三十而已&page=1&key=zuidazy
+
+
+###
+GET http://127.0.0.1:7001/getMhRssHub1?url=https://m.gufengmh8.com/manhua/zhenhunjie/
+
