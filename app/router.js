@@ -18,6 +18,8 @@ module.exports = (app) => {
     router.get("/getDetailManhua", controller.manhua.detail);
     router.get("/getImagesManhua", controller.manhua.getImages);
     router.get("/getSearchXiaishuo", controller.xiaoshuo.search);
+    router.get("/getSearchXszj", controller.xiaoshuo.searchzhangjie);
+    router.get("/getSearchXszjDetail", controller.xiaoshuo.zhangjieDetail);
     router.get("/getMhRssHub", controller.manhua.rssHub);
     router.get("/getMhRssHub1", controller.manhua.testRssHub);
 };
