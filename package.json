@@ -8,8 +8,11 @@
     },
     "dependencies": {
         "@elastic/elasticsearch": "^7.6.1",
+        "@octokit/auth-app": "^2.4.15",
+        "@octokit/core": "^3.1.2",
         "axios": "^0.19.2",
         "cheerio": "^1.0.0-rc.3",
+        "dayjs": "^1.8.35",
         "egg": "^2.26.0",
         "egg-alinode": "^2.0.1",
         "egg-cache": "0.0.6",
@@ -20,8 +23,9 @@
         "generic-pool": "^3.7.1",
         "lodash": "^4.17.15",
         "p-all": "^2.1.0",
-        "puppeteer": "^3.0.3",
-        "require-context-async": "^1.2.0"
+        "puppeteer": "^5.2.1",
+        "require-context-async": "^1.2.0",
+        "timeago.js": "^4.0.2"
     },
     "devDependencies": {
         "autod": "^3.0.1",

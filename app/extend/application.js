@@ -6,6 +6,16 @@ module.exports = {
         const brower = await this.pool.use();
         const page = await brower.newPage();
         page.setDefaultNavigationTimeout(240 * 1000);
+        await page.evaluateOnNewDocument(() => {
+            const newProto = navigator.__proto__;
+            delete newProto.webdriver;
+            navigator.__proto__ = newProto;
+        });
+        await page.evaluateOnNewDocument(() => {
+            window.navigator.chrome = {
+                runtime: {},
+            };
+        });
         return {
             page,
             brower,

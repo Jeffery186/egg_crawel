@@ -16,19 +16,6 @@ const searchManHua = async (ctx, search) => {
     const page = reOptions.page;
     const brower = reOptions.brower;
 
-    // let response = await axios.get(
-    //     `https://m.gufengmh8.com/search/?keywords=${encodeURIComponent(
-    //         search.keywords
-    //     )}`,
-    //     {
-    //         headers: { "User-Agent": userAgent.random() },
-    //     }
-    // );
-    // const $ = cheerio.load(response.data, {
-    //     ignoreWhitespace: true,
-    //     normalizeWhitespace: true,
-    // });
-
     try {
         // 找到封面跟url
         let items = $("#update_list .UpdateList .itemBox");
@@ -57,11 +44,6 @@ const searchManHua = async (ctx, search) => {
 
 const detailManHua = async (ctx, search) => {
     let dataList = {};
-    // const reOptions = await ctx.app.gotoUrl(search.url);
-    // if (!reOptions) return;
-    // const $ = reOptions.$;
-    // const page = reOptions.page;
-    // const brower = reOptions.brower;
     try {
         let response = await axios.get(search.url, {
             headers: { "User-Agent": userAgent.random() },
@@ -117,23 +99,14 @@ const detailManHua = async (ctx, search) => {
             catlogs,
         };
 
-        // await page.close();
-        // await ctx.app.pool.releaseHs(brower);
         return dataList;
     } catch (error) {
         console.log(error);
-        // await page.close();
-        // await ctx.app.pool.releaseHs(brower);
     }
 };
 
 const getImages = async (ctx, search) => {
     let dataList = [];
-    // const reOptions = await ctx.app.gotoUrl(search.url);
-    // if (!reOptions) return;
-    // const $ = reOptions.$;
-    // const page = reOptions.page;
-    // const brower = reOptions.brower;
     try {
         let response = await axios.get(search.url, {
             headers: { "User-Agent": userAgent.random() },
@@ -159,13 +132,9 @@ const getImages = async (ctx, search) => {
             );
         });
 
-        // await page.close();
-        // await ctx.app.pool.releaseHs(brower);
         return dataList;
     } catch (error) {
         console.log(error);
-        // await page.close();
-        // await ctx.app.pool.releaseHs(brower);
     }
 };
 
