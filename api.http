@@ -4,6 +4,13 @@ GET http://127.0.0.1:7001/getAllZiyuan HTTP/1.1
 GET http://127.0.0.1:7001/getSearchXiaishuo?keywords=万古神帝
 
 ###
+GET http://127.0.0.1:7001/getSearchXszj?url=https://m.biquge.com.cn/book/12305/&page=1
+
+
+###
+GET http://127.0.0.1:7001/getSearchXszjDetail?url=https://m.biquge.com.cn/book/12305/
+
+###
 POST https://api.jikipedia.com/go/get_hot_search
 Content-Type: application/json
 
@@ -15,4 +22,25 @@ GET http://127.0.0.1:7001/getSearchZiyuan?keywords=三十而已&page=1&key=zuida
 
 ###
 GET http://127.0.0.1:7001/getMhRssHub1?url=https://m.gufengmh8.com/manhua/zhenhunjie/
+
+###
+GET http://127.0.0.1:7001/getDetailManhua?url=https://m.gufengmh8.com/manhua/zhenhunjie/
+
+###
+GET http://127.0.0.1:7001/getSearchManhua?keywords=镇魂街
+
+###
+GET http://127.0.0.1:7001/getHotZiyuan
+
+###
+GET http://127.0.0.1:7001/getDetailZiyuan?url=http://www.kukan6.com/Domestic/xinlingfayi/
+
+###
+GET http://127.0.0.1:7001/getSearchZiyuan?keywords=镇魂街
+
+
+###
+GET https://bookshelf.html5.qq.com/api/migration/list_charpter?resourceid=1100648963&start=280&serialnum=10000&sort=asc&t=1231312321 HTTP/1.1
+referer: https://bookshelf.html5.qq.com/?t=native&ch=004645
+Content-Type: application/json
 

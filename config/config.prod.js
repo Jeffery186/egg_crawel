@@ -54,7 +54,7 @@ module.exports = (appInfo) => {
             // 用户名
             user: "root",
             // 密码
-            password: "**********",
+            password: "*******",
             // 数据库名
             database: "egg_crawel",
             // 数据类型
@@ -70,10 +70,19 @@ module.exports = (appInfo) => {
         agent: false,
     };
 
+    config.redis = {
+        client: {
+            port: 6379, // Redis port
+            host: "******", // Redis host
+            password: "*******",
+            db: 0,
+        },
+    };
+
     config.alinode = {
         enable: true,
-        appid: "2317",
-        secret: "018788ea0ad4f2cd20c1328dc24c17e399d35b3a",
+        appid: "****",
+        secret: "*********",
     };
 
     // add your user config here

@@ -5,7 +5,7 @@ const wuaipojieRq = async (ctx) => {
     ctx.app.logger.info("吾爱破解 人气热门 抓取 => begin");
     const reOptions = await ctx.app.gotoUrl(
         "https://www.52pojie.cn/forum.php?mod=guide&view=hot&page=1",
-        "networkidle2"
+        "networkidle0"
     );
     if (!reOptions) return;
     const $ = reOptions.$;

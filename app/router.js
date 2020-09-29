@@ -9,11 +9,10 @@ module.exports = (app) => {
     router.get("/getRssByUrl", controller.rss.index);
     router.get("/hotSearch", controller.hotsearch.index);
     router.get("/hotSearchRept", controller.hotsearch.getRepaName);
-    router.get("/getAllZiyuan", controller.okziyuan.getAllData);
     router.get("/getSearchZiyuan", controller.okziyuan.search);
-    router.get("/getNewZiyuan", controller.okziyuan.newz);
-    router.get("/getViewZiyuan", controller.okziyuan.viewz);
     router.get("/getDetailZiyuan", controller.okziyuan.detail);
+    router.get("/getHotZiyuan", controller.okziyuan.getHotData);
+
     router.get("/getSearchManhua", controller.manhua.search);
     router.get("/getDetailManhua", controller.manhua.detail);
     router.get("/getImagesManhua", controller.manhua.getImages);

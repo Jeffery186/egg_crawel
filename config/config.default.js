@@ -48,13 +48,13 @@ module.exports = (appInfo) => {
         // 单数据库信息配置
         client: {
             // host
-            host: "127.0.0.1",
+            host: "********",
             // 端口号
             port: "3306",
             // 用户名
             user: "root",
             // 密码
-            password: "**********",
+            password: "…*********",
             // 数据库名
             database: "egg_crawel",
             // 数据类型
@@ -64,6 +64,15 @@ module.exports = (appInfo) => {
         app: true,
         // 是否加载到 agent 上，默认关闭
         agent: false,
+    };
+
+    config.redis = {
+        client: {
+            port: 6379, // Redis port
+            host: "******", // Redis host
+            password: "*******",
+            db: 0,
+        },
     };
 
     // add your user config here

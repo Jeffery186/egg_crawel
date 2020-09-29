@@ -2,12 +2,7 @@
 
 const { Controller } = require("egg");
 
-const {
-    getZiyuan,
-    searchZiyuan,
-    getNewZiyuan,
-    parseFilmGetData,
-} = require("../specialCrawel/ziyuan");
+const { searchZiyuan, getHotZyDetail, getHotZiyuan, getVideoList } = require("../specialCrawel/ziyuan");
 
 class OkziyuanController extends Controller {
     async search() {
@@ -21,32 +16,25 @@ class OkziyuanController extends Controller {
         };
     }
 
-    async newz() {
-        const { ctx } = this;
-        console.log(ctx.query);
-        let dataList = await getNewZiyuan(ctx, ctx.query);
-        ctx.body = {
-            code: 200,
-            message: "success",
-            data: dataList,
-        };
-    }
-
-    async viewz() {
-        const { ctx } = this;
-        console.log(ctx.query);
-        let dataList = await getZiyuan(ctx, ctx.query);
-        ctx.body = {
-            code: 200,
-            message: "success",
-            data: dataList,
-        };
-    }
-
     async detail() {
         const { ctx } = this;
         console.log(ctx.query);
-        let dataList = await parseFilmGetData(ctx, ctx.query);
+        let dataList = [];
+        let result = await ctx.app.redis.get(ctx.query.url);
+        if (result) {
+            dataList = JSON.parse(result);
+        } else {
+            dataList = await getHotZyDetail(ctx, ctx.query);
+            for (const item in dataList[0].videoList) {
+                if (dataList[0].videoList.hasOwnProperty(item)) {
+                    const element = dataList[0].videoList[item];
+                    let videoUrl = await getVideoList(element);
+                    dataList[0].videoList[item] = videoUrl;
+                }
+            }
+            await ctx.app.redis.set(dataList[0].url, JSON.stringify(dataList), "EX", 86400);
+        }
+
         ctx.body = {
             code: 200,
             message: "success",
@@ -54,9 +42,9 @@ class OkziyuanController extends Controller {
         };
     }
 
-    async getAllData() {
+    async getHotData() {
         const { ctx } = this;
-        let dataList = ctx.app.parseZiyuanData;
+        let dataList = await getHotZiyuan(ctx);
 
         ctx.body = {
             code: 200,

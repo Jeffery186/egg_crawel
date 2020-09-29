@@ -1,19 +1,34 @@
-# egg_crawel 如果喜欢，点个 star 吧！谢谢！
+# egg_crawel
 
 crawel
 
-## 爬虫后台技术栈
+## QuickStart
 
--   nodejs
--   puppeteer
--   egg
+<!-- add docs here for user -->
 
-## 爬虫目录-- 热点爬虫
+see [egg docs][egg] for more detail.
 
--   app/reptilthot
+### Development
 
-### 部署
+```bash
+$ npm i
+$ npm run dev
+$ open http://localhost:7001/
+```
 
--   配置数据库 condfig 文件中，对应位置,填入数据库的相关信息（mysql）
--   npm i
--   npm run start
+### Deploy
+
+```bash
+$ npm start
+$ npm stop
+```
+
+
+### npm scripts
+
+- Use `npm run lint` to check code style.
+- Use `npm test` to run unit test.
+- Use `npm run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
+
+
+[egg]: https://eggjs.org

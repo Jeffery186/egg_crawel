@@ -6,7 +6,7 @@ class Reptilehot extends Subscription {
     // 通过 schedule 属性来设置定时任务的执行间隔等配置
     static get schedule() {
         return {
-            interval: "1d",
+            interval: "7d",
             type: "all",
         };
     }

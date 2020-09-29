@@ -44,14 +44,19 @@ const searchManHua = async (ctx, search) => {
 
 const detailManHua = async (ctx, search) => {
     let dataList = {};
+    const reOptions = await ctx.app.gotoUrl(search.url);
+    if (!reOptions) return;
+    const $ = reOptions.$;
+    const page = reOptions.page;
+    const brower = reOptions.brower;
     try {
-        let response = await axios.get(search.url, {
-            headers: { "User-Agent": userAgent.random() },
-        });
-        const $ = cheerio.load(response.data, {
-            ignoreWhitespace: true,
-            normalizeWhitespace: true,
-        });
+        // let response = await axios.get(search.url, {
+        //     headers: { "User-Agent": userAgent.random() },
+        // });
+        // const $ = cheerio.load(response.data, {
+        //     ignoreWhitespace: true,
+        //     normalizeWhitespace: true,
+        // });
 
         // 找到sub
         let cover = $("#Cover mip-img img").attr("src");
@@ -75,6 +80,7 @@ const detailManHua = async (ctx, search) => {
         let content = $(".comic-view p").text();
 
         let catlogs = [];
+        let cat = [];
 
         let items = $(".comic-view .Drama li");
         items.each((i, element) => {
@@ -82,6 +88,7 @@ const detailManHua = async (ctx, search) => {
                 .find("a")
                 .attr("href")}`;
             let text = $(element).find("span").text();
+
             catlogs.push({
                 url,
                 text,
@@ -99,22 +106,31 @@ const detailManHua = async (ctx, search) => {
             catlogs,
         };
 
+        await page.close();
+        await ctx.app.pool.releaseHs(brower);
         return dataList;
     } catch (error) {
         console.log(error);
+        await page.close();
+        await ctx.app.pool.releaseHs(brower);
     }
 };
 
 const getImages = async (ctx, search) => {
     let dataList = [];
+    // const reOptions = await ctx.app.gotoUrl(search.url);
+    // if (!reOptions) return;
+    // const $ = reOptions.$;
+    // const page = reOptions.page;
+    // const brower = reOptions.brower;
     try {
         let response = await axios.get(search.url, {
             headers: { "User-Agent": userAgent.random() },
         });
-        const $ = cheerio.load(response.data, {
-            ignoreWhitespace: true,
-            normalizeWhitespace: true,
-        });
+        // const $ = cheerio.load(response.data, {
+        //     ignoreWhitespace: true,
+        //     normalizeWhitespace: true,
+        // });
 
         // 找到sub
         let context = response.data;
@@ -132,9 +148,13 @@ const getImages = async (ctx, search) => {
             );
         });
 
+        // await page.close();
+        // await ctx.app.pool.releaseHs(brower);
         return dataList;
     } catch (error) {
         console.log(error);
+        // await page.close();
+        // await ctx.app.pool.releaseHs(brower);
     }
 };
 
@@ -143,6 +163,14 @@ const manhuaRssHub = async (ctx, search) => {
     ctx.app.logger.info("镇魂街 => begin");
     console.log("读取文件---------------------");
     let dataList = await detailManHua(ctx, search);
+
+    // 处理catlog
+    let cat1 = dataList.catlogs.slice(0, 225);
+    let cat2 = dataList.catlogs.slice(399, 461);
+    let cat3 = dataList.catlogs.slice(516, 521);
+    let cat4 = dataList.catlogs.slice(693, dataList.catlogs.length);
+    dataList.catlogs = cat1.concat(cat2).concat(cat3).concat(cat4);
+
     for (const key in dataList.catlogs) {
         if (dataList.catlogs.hasOwnProperty(key)) {
             const element = dataList.catlogs[key];
